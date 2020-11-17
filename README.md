@@ -14,4 +14,5 @@ CS4710 final project for Hanyu Liu and Chengyuan Cai. This is a cool project.
 
 
 # The Authors:
+Chengyuan(Diego) Cai (left) and Hanyu Liu (right)
 ![GitHub Logo](/images/two_students.png)
