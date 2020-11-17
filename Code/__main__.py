@@ -2,20 +2,62 @@
 # See 'Paper Works' folder for more detail
 
 import Code
+import time
+
+"""
+User Interface
+"""
 
 covid_path = '/Users/hanyu/Desktop/Covid-Map/Data/united_states_covid19_cases_and_deaths_by_state.csv'
 neigbor_path = '/Users/hanyu/Desktop/Covid-Map/Data/neighbor_states.csv'
 position_path = '/Users/hanyu/Desktop/Covid-Map/Data/states.csv'
 
-covid_map = Code.load_data_to_graph.load_data(covid_path, neigbor_path, position_path)
+print()
+print("******************************** Welcome to COVID-MAP ********************************\n")
+while True:
+    weight_distance = int(input("How much do you value a faster route? Enter a number between 1 to 100: "))
+    if weight_distance <= 1:
+        weight_distance = 1
+    weight_safety = int(input("How much do you value a safer route? Enter a number between 1 to 100: "))
+    if weight_safety <= 1:
+        weight_safety = 1
+    print()
 
-path = covid_map.dijkstra("Virginia", "Washington")
+    covid_map = Code.load_data_to_graph.load_data(covid_path, neigbor_path, position_path, weight_distance,
+                                                  weight_safety)
 
-website = Code.path_to_route.path_to_Website(path)
+    start = input("Enter the state you'll start in: ")
+    end = input("Enter the state you want to go: ")
+    print()
 
-Code.path_to_route.turn_to_Google(website)
+    path = covid_map.dijkstra(start, end)
 
-print(path)
+    print("Figuring out the path....\n")
+    time.sleep(5)
+
+    if path is None:
+        print("No path available, sorry :(")
+    else:
+        print("Your optimal path is:")
+        num = 1
+        while num <= len(path):
+            print(f"{num}. {path[num - 1]}")
+            num += 1
+
+        print()
+        print("Switching to Google Maps in 5 seconds.....")
+        time.sleep(5)
+
+        website = Code.path_to_route.path_to_Website(path)
+        Code.path_to_route.turn_to_Google(website)
+
+    print()
+    again = input("Enter 'q' to quit, 1or any other key to calculate another route: ")
+    if again == 'q':
+        break
+
+
+
 
 # Code.load_data_to_graph.test()
 # Code.graph.test()
