@@ -1,4 +1,4 @@
-# Covid-Map
+# 🚗 🚕 🚙 Covid-Map 🚌 🚜 🚚
 
 Travling back home during holiday season can be worrysome this year due to the threat of Covid-19 infections. Covid-Map is designed to provide insights for drivers to find the optimal path back home, avoiding regions that are highly infected while achieving a short traveling time in the same time.
 
