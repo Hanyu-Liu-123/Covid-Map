@@ -42,6 +42,6 @@ def test():
     list.append("Albemarle County, Virginia")
     list.append("Warren County, Virginia")
     list.append("Orange County, California")
-    list = list*5
+    list.append("Davison County, Tennessee")
     print(path_to_Website(list))
     turn_to_Google(path_to_Website(list))

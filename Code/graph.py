@@ -61,8 +61,8 @@ class graph:
             distance, current = heappop(heap)
 
             if current == end:
-                print(parent)
-                print(distance)
+                # print(parent)
+                # print(distance)
                 return get_path(parent, start, end)
 
             for next, weight in self.get_neighbors(current):
