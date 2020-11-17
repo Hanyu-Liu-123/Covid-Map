@@ -105,4 +105,4 @@ def test():
 
     print(testGraph.dijkstra("Albermale County, Virginia", "Orange County, California"))
 
-test()
+#test()
