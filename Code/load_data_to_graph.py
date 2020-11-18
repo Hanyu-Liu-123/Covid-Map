@@ -80,10 +80,12 @@ def load_data(covid_path, neighbor_path, position_path, weight_distance=1, weigh
             state_distance[key] = state_distance[key] / max
             state1 = key[0]
             state2 = key[1]
-            safety_cost = covid_cases_by_location[state2] / covid_cases_by_location[state1] * weight_safety
-            edge_cost = weight_distance * state_distance[key] + safety_cost
+            safety_cost1 = covid_cases_by_location[state2] / covid_cases_by_location[state1] * weight_safety
+            safety_cost2 = covid_cases_by_location[state1] / covid_cases_by_location[state2] * weight_safety
+            edge_cost1 = weight_distance * state_distance[key] + safety_cost1
+            edge_cost2 = weight_distance * state_distance[key] + safety_cost2
             # print(state1, state2, covid_cases_by_location[state1], covid_cases_by_location[state2], state_distance[key])
-            covid_map.add_edge(state1, state2, edge_cost)
+            covid_map.add_edge(state1, state2, edge_cost1, edge_cost2)
 
     # print(covid_map)
     return covid_map
