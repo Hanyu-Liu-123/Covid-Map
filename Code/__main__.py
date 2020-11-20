@@ -16,10 +16,10 @@ print()
 print("******************************** Welcome to COVID-MAP ********************************\n")
 
 while True:
-    weight_distance = int(input("How much do you value a faster route? Enter a number between 1 to 100: "))
+    weight_distance = int(input("How much do you value a faster route? Enter a number between 1 and 100: "))
     if weight_distance <= 1:
         weight_distance = 1
-    weight_safety = int(input("How much do you value a safer route? Enter a number between 1 to 100: "))
+    weight_safety = int(input("How much do you value a safer route? Enter a number between 1 and 100: "))
     if weight_safety <= 1:
         weight_safety = 1
     print()
