@@ -14,6 +14,7 @@ position_path = '/Users/hanyu/Desktop/Covid-Map/Data/states.csv'
 
 print()
 print("******************************** Welcome to COVID-MAP ********************************\n")
+
 while True:
     weight_distance = int(input("How much do you value a faster route? Enter a number between 1 to 100: "))
     if weight_distance <= 1:
@@ -52,7 +53,7 @@ while True:
         Code.path_to_route.turn_to_Google(website)
 
     print()
-    again = input("Enter 'q' to quit, 1or any other key to calculate another route: ")
+    again = input("Enter 'q' to quit, or any other key to calculate another route: \n")
     if again == 'q':
         break
 
