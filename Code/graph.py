@@ -35,7 +35,10 @@ class graph:
             return True, self.weights_list[node1][node2]
         return False, None
 
-    def get_neighbors(self, node):
+    def get_neighbors(self, node, weights=False):
+        # gives a set of all nodes adjacent to node n
+        if not weights:
+            return self.adjacency_list[node]
         return self.weights_list[node].items()
 
     def __str__(self):
@@ -48,6 +51,36 @@ class graph:
             rep.strip(',')
             rep += ']\n'
         return rep.strip()
+
+    def bfs(self, start, end):
+        queue = [start]
+        visited = {start}
+        parent = {start : start}
+        while len(queue) > 0:
+            current = queue.pop(0)
+            if current == end:
+                return get_path(parent, start, end)
+
+            for next in self.get_neighbors(current):
+                if next not in visited:
+                    queue.append(next)
+                    visited.add(next)
+                    parent[next] = current
+
+    def dfs(self, start, end):
+        stack= [start]
+        visited = {start}
+        parent = {start : start}
+        while len(stack) > 0:
+            current = stack.pop(-1)
+            if current == end:
+                return get_path(parent, start, end)
+
+            for next in self.get_neighbors(current):
+                if next not in visited:
+                    stack.append(next)
+                    visited.add(next)
+                    parent[next] = current
 
     def dijkstra(self, start, end):
 
@@ -65,7 +98,7 @@ class graph:
                 # print(distance)
                 return get_path(parent, start, end)
 
-            for next, weight in self.get_neighbors(current):
+            for next, weight in self.get_neighbors(current, True):
                 next_priority = distance + weight
 
                 if next not in visited:
@@ -103,6 +136,4 @@ def test():
     testGraph.add_edge("Warren County, Virginia", "Area 51", 2, 2)
     testGraph.add_edge("Area 51", "Orange County, California", 2, 2)
 
-    print(testGraph.dijkstra("Albermale County, Virginia", "Orange County, California"))
-
-#test()
+    print(testGraph.bfs("Albermale County, Virginia"))

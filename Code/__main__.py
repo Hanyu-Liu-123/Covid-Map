@@ -31,10 +31,23 @@ while True:
     end = input("Enter the state you want to go: ")
     print()
 
-    path = covid_map.dijkstra(start, end)
+    while True:
+        search_algo = input("Enter A to use dijkstra, B to use bfs, and C to use dfs: ")
+        if search_algo == "A":
+            path = covid_map.dijkstra(start, end)
+            break
+        elif search_algo == "B":
+            path = covid_map.bfs(start, end)
+            break
+        elif search_algo == "C":
+            path = covid_map.dfs(start, end)
+            break
+        else:
+            continue
+    print()
 
     print("Figuring out the path....\n")
-    time.sleep(5)
+    # time.sleep(2)
 
     if path is None:
         print("No path available, sorry :(")
